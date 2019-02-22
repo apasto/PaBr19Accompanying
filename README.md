@@ -42,20 +42,20 @@ Input and output of the thermal solver and iterative RHP fitting procedure. Data
 * `TOUT_VOL.mat`, model volume at the last iteration. Nodes are arranged in a (z, x, y) order. It is a struct named `TOUT_VOL` containing the following 3D arrays, as fields:
 
   * `L` - layer ID (1 "air" above topography, 2 sediments, 3 upper crust, 4 lower crust, 5 SCLM, 6 "asthenosphere" below SCLM)
-  * `A` - radioactive heat production, per unit of volume, in 10<sup>-6</sup> W m<sup>-2</sup>. A is set to 99 under the LAB and 
+  * `A` - radioactive heat production, per unit of volume, in 10<sup>-3</sup> W m<sup>-1</sup>. A is set to 99 under the LAB and 
   * `k` - thermal conductivity, in W m<sup>-1</sup> K<sup>-1</sup>
   * `P` - lithostatic pressure, in Pa
   * `Rho` - density, in kg m<sup>-3</sup>
 
 * `TOUT_iter.mat`, model derived quantities trough the RHP fitting iterations. It is a struct named `TOUT_iter` containing the following fields:
 
-  * `Q0` - surface heat flow
-  * `Qm` - basal heat flow (at Moho)
-  * `Qs` - heat flow at the sediment to crystalline crust basement
+  * `Q0` - surface heat flow, in 10<sup>-3</sup> W m<sup>-1</sup>
+  * `Qm` - basal heat flow (at Moho), in 10<sup>-3</sup> W m<sup>-1</sup>
+  * `Qs` - heat flow at the sediment to crystalline crust basement, in 10<sup>-3</sup> W m<sup>-1</sup>
   * `misfit` - surface heat flow difference between forward model (Q0) and measurements (where available, NaN everywhere else)
-  * `UCA` - Upper Crust RHP used in this iteration
-  * `LCA` - Lower Crust RHP used in this iteration
-  * `kEQ` - Serie thermal conductivity along each LAB to surface column
+  * `UCA` - Upper Crust RHP used in this iteration, in 10<sup>-3</sup> W m<sup>-1</sup>
+  * `LCA` - Lower Crust RHP used in this iteration, in 10<sup>-3</sup> W m<sup>-1</sup>
+  * `kEQ` - Series thermal conductivity along each LAB-to-surface column, in W m<sup>-1</sup> K<sup>-1</sup>
 
   All the `TOUT_iter.mat` fields are 1-by-7 cell arrays. Each cell therein represents one RHP fitting iteration (including the starting conditions, in the first cell). Each cell is a (x, y) array.
 
