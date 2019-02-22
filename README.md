@@ -74,12 +74,15 @@ It acts as a wrapper for `TOUT_section`, which can be called directly.
 `TOUT_sectionCall` must be called without arguments.
 
 First figure: map view. The figure waits for two clicks, defining the section path.
+
 ![Map view in figure 1](./images/sectionCall_map.png)
 
 Second figure: section. Same format as section provided in the manuscript. The figure waits for two clicks, defining the along-section position of columns.
+
 ![Section view in figure 2](./images/sectionCall_section.png)
 
 Third figure: columns.
+
 ![Columns view in figure 3](./images/sectionCall_columns.png)
 
 ## `topo` directory
