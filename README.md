@@ -61,6 +61,10 @@ Input and output of the thermal solver and iterative RHP fitting procedure. Data
 
 * `ProcessedHF.mat`, 2D array (x, y) of filtered surface heat flow measurements on the model grid. NaN where no data is available.
 
+* `TIN_layers.mat`, input data used to build the thermal solver 3D volume. A struct containing:
+  * `AIR`, `SEDS`, `UCRUST`, `LCRUST`, `LID`, `AST` - a field for each layer (AIR and AST define the top and bottom solver boundaries)
+  * `DefGrid` - grid parameters (coordinates, steps) for the aforementioned layers. This grid, compared to the one provided in `Tgrid`, includes a two-cell wide edge padding, on each side.
+        
 ## `src` directory
 
 We provide two Matlab/Octave functions to ease the exploration of the thermal volume:
