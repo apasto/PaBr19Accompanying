@@ -11,7 +11,7 @@ narginchk(0,0)
 nargoutchk(0,0)
 
 % ETOPO1 in area, 0.05 deg step
-load('../data/2018-09_paper/ETOPO1_005d_crop.mat','ETOPO1_005d');
+load('../topo/ETOPO1_005d_crop.mat','ETOPO1_005d');
 
 % get UTM zone and extent polygon from grid reference
 load('../thermal/Tgrid.mat','Tgrid');
@@ -31,6 +31,7 @@ MapAxes.YMinorGrid = 'on';
 MapAxes.Layer = 'top';
 MapAxes.XLabel.String = 'Lon. [deg]';
 MapAxes.YLabel.String = 'Lat. [deg]';
+MapColorbar.Label.String = 'Topography [m]';
 
 % overlay extents polygon, after un-projection to WGS84
 % 'explode' sides, reproject one by one
@@ -80,8 +81,8 @@ Pl.Section = plot(Section_Lon,Section_Lat,...
 
 % call section, points in the form [x1,y1; x2,y2]
 Section_points = [Input_x,Input_y];
-[Sect.FigSect, Sect.Ax, Sect.Pl, Sect.ColorbarsH, Sect.LegendH, Sect.PatchH] = ...
-    HF_section(Section_points,'all',1); %#ok<STRNU>
+[Sect.FigSect, Sect.Ax, Sect.Pl, Sect.ColorbarsH, Sect.PatchH] = ...
+    TOUT_section(Section_points,'all',1); %#ok<STRNU>
 
 end
 

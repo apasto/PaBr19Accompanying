@@ -1,12 +1,11 @@
 function varargout = TOUT_section(varargin)
 %TOUT_section plot section (vertical slice, 1 segment) of thermal model (and input data)
 %
-% Syntax: [FigSect, Ax, Pl, ColorbarsH, LegendH, PatchH] = HF_section(Points,ContourType,DoColumns)
+% Syntax: [FigSect, Ax, Pl, ColorbarsH, PatchH] = HF_section(Points,ContourType,DoColumns)
 %
 %  Input arguments: all optional
-%    Points : Section profile, defined by a line
-%             a 2x2 matrix in the form [x1,y1; x2,y2].
-%             If no argument are provided, or if this is empty "[]",
+%    Points : Section profile, a line defined by a 2x2 matrix in the form [x1,y1; x2,y2].
+%             If no arguments are provided, or if this is empty "[]",
 %             the default section is loaded - same section plotted in the
 %             manuscript.
 %    ContourType : either 'none','notext','all'
@@ -19,15 +18,15 @@ function varargout = TOUT_section(varargin)
 %                  along section used in the manuscript figure
 %                - it can be set to a vector of column positions, along section
 %
-%  Output arguments: graphic handles to [figure, axes, plots, colorbars, legend, section fill]
-%   either none or exactly 6 output arguments are allowed
+%  Output arguments: graphic handles to [figure, axes, plots, colorbars, section fill]
+%   either none or exactly 5 output arguments are allowed
 %
 % 2019, Alberto Pastorutti and Carla Braitenberg
 
 %% manage output arguments
 % before performing anything
-if ~or(nargout==0,nargout==6)
-    error('Number of output arguments must be either 0 (none) or 6 (graphic handles)')
+if ~or(nargout==0,nargout==5)
+    error('Number of output arguments must be either 0 (none) or 5 (graphic handles)')
 end
 
 %% manage input arguments
@@ -65,32 +64,17 @@ else
 end
 
 if LoadDefaultSection
-    % load from default shapefile
-    % section path (as shapefile)
-    SectShapeFile = '../data/2018-09_paper/heatflow/SectionProfileAA.shp';
-    SectShapeStruct = shaperead(SectShapeFile);
-    
-    % check shapefile
-    assert(any(strcmp(fieldnames(SectShapeStruct),'Geometry')),...
-        'Input file is not a shapefile.');
-    assert(strcmp(SectShapeStruct.Geometry,'Line'),...
-        'Section shapefile geometry is not a Line.');
-    assert(and(length(SectShapeStruct.X)==3,length(SectShapeStruct.X)==3),...
-        'Section shapefile does not define a segment (2 points only)');
-    % note: for a 2 point segment we get 3 elements long X and Y
-    %       last element is a NaN
-    
-    % extract segment vertices
-    SectV.X = SectShapeStruct.X(1:2);
-    SectV.Y = SectShapeStruct.Y(1:2);
+    % use default vertices
+    SectV.X = [-60000, 820000];
+    SectV.Y = [5180000, 5880000];
 end
 
 %% load data: output volumes
-load('../data/2018-09_paper/heatflow/Iter.mat','Iter');
-% needed to get UTM zone
-load('../data/2018-09_paper/2018-10_extent/GridRef.mat','GridRef');
+load('../../mohoHFpaper/data/2018-09_paper/heatflow/Iter.mat','Iter');
+% get UTM zone
+load('../thermal/Tgrid.mat','Tgrid');
 % ETOPO1 in area, 0.01 deg step
-load('../data/2018-09_paper/ETOPO1_005d_crop.mat','ETOPO1_005d');
+load('../topo/ETOPO1_005d_crop.mat','ETOPO1_005d');
 
 %% define section interpolation parameters
 % in metres
@@ -131,7 +115,7 @@ SectZ = ...
     Iter.Layers.DefGrid.z+Iter.Layers.DefGrid.zshift);
 
 %% un-project profile points to WGS84 and extract topography profile
-[SectLat,SectLon] = minvtran(GridRef.UTMstruct,SectX,SectY);
+[SectLat,SectLon] = minvtran(Tgrid.UTMstruct,SectX,SectY);
 
 InT = interp2(...
     ETOPO1_005d.lat',ETOPO1_005d.lon,...
@@ -548,13 +532,12 @@ if DoColumns~=0
 end
 
 %% manage output arguments
-if nargout==6 % output handles to graphic objects
+if nargout==5 % output handles to graphic objects
     varargout{1} = FigSect;
     varargout{2} = Ax;
     varargout{3} = Pl;
     varargout{4} = ColorbarsH;
-    varargout{5} = LegendH;
-    varargout{6} = PatchH;
+    varargout{5} = PatchH;
 end
 
 end
