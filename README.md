@@ -1,6 +1,6 @@
 # PaBr19 Accompanying Data
 
-Accompanying data to the submitted manuscipt "A geothermal application for GOCE satellite gravity data: modelling the crustal heat production and lithospheric temperature field in Central Europe".
+Accompanying data to the submitted manuscript "A geothermal application for GOCE satellite gravity data: modelling the crustal heat production and lithospheric temperature field in Central Europe".
 
 This data has been prepared as a git repository.
 
@@ -62,3 +62,26 @@ Input and output of the thermal solver and iterative RHP fitting procedure. Data
 * `ProcessedHF.mat`, 2D array (x, y) of filtered surface heat flow measurements on the model grid. NaN where no data is available.
 
 ## `src` directory
+
+We provide two Matlab/Octave functions to ease the exploration of the thermal volume:
+
+* `TOUT_section.m`
+* `TOUT_sectionCall.m`
+
+The `TOUT_sectionCall` function is a tool to interactively plot sections (vertical slices) of the volumes, and of two columns in each section (i.e. depth-wise plots of temperature, thermal conductivity, heat production, heat flow).
+It acts as a wrapper for `TOUT_section`, which can be called directly.
+
+`TOUT_sectionCall` must be called without arguments.
+
+First figure: map view. The figure waits for two clicks, defining the section path.
+![Map view in figure 1](./images/sectionCall_map.png)
+
+Second figure: section. Same format as section provided in the manuscript. The figure waits for two clicks, defining the along-section position of columns.
+![Section view in figure 2](./images/sectionCall_section.png)
+
+Third figure: columns.
+![Columns view in figure 3](./images/sectionCall_columns.png)
+
+## `topo` directory
+
+`ETOPO1_005d_crop.mat` is a crop of ETOPO1 ([doi:10.7289/V5C8276M](http://dx.doi.org/10.7289/V5C8276M)) in the study area. It is used in `TOUT_sectionCall` to provide a geographical background for the area map.
