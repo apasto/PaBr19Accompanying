@@ -243,7 +243,7 @@ Sect_d_km_steps = (Sect_d-SectI_horStep/2)*1e-3; % shift to make steps fit
 SectZ_km = SectZ*1e-3;
 
 FigSect = figure();
-FigSect.Colormap = viridis;
+FigSect.Colormap = parula;
 FigSectsWidth = 5; % width of sections (in subplot cols)
 FigPlotsWidth = 1; % width of col on the right (leave space for colorbars)
 FigCols = FigSectsWidth + FigPlotsWidth;
@@ -314,9 +314,9 @@ Ax.S_Q0.YLim(2) = Ax.S_Q0.YLim(2)+5;
 Ax.S_Q0.YLim(1) = Ax.S_Q0.YLim(1)-5;
 Ax.S_Q0.YMinorGrid = 'on';
 Ax.S_Q0.YTick = ...
-    SNIP.RoundToStep(5,Ax.S_Q0.YLim(1),'ceil'):...
+    RoundToStep(5,Ax.S_Q0.YLim(1),'ceil'):...
     25:...
-    SNIP.RoundToStep(5,Ax.S_Q0.YLim(2),'floor');
+    RoundToStep(5,Ax.S_Q0.YLim(2),'floor');
 
 % heat flow, Qm
 Pl.S_Q.Qm = plot(Sect_d_km,InQ.Qm,...
@@ -339,9 +339,9 @@ Pl.S_A.img = imagesc(Sect_d_km,SectZ_km,InV.A,'Parent',Ax.S_A);
 Pl.S_A.bound = PlotBoundariesOnSection(Sect_d_km_steps,InP,Ax.S_A,BoundaryColor,BoundaryLineWidth);
 
 % correct and round extremes of colormaps
-Ax.S_k.CLim(1) = SNIP.RoundToStep(0.1,min(InV.k(InV.k~=0)),'ceil');
-Ax.S_k.CLim(2) = SNIP.RoundToStep(0.1,Ax.S_k.CLim(2),'floor');
-Ax.S_A.CLim(2) = SNIP.RoundToStep(0.1,max(InV.A(InV.A<88)),'floor'); % 88 and 99 are boundary tags
+Ax.S_k.CLim(1) = RoundToStep(0.1,min(InV.k(InV.k~=0)),'ceil');
+Ax.S_k.CLim(2) = RoundToStep(0.1,Ax.S_k.CLim(2),'floor');
+Ax.S_A.CLim(2) = RoundToStep(0.1,max(InV.A(InV.A<88)),'floor'); % 88 and 99 are boundary tags
 
 % colormaps 
 ColorbarsH.S_T = colorbar(Ax.S_T,'Location','east');
@@ -364,7 +364,7 @@ ColorbarsH.S_A.Label.String = 'A [\muW/m^3]';
 % k and A, closer ticks
 ColorbarsH.S_k.Ticks = Ax.S_k.CLim(1):0.25:Ax.S_k.CLim(2);
 ColorbarsH.S_A.Ticks = ...
-    SNIP.RoundToStep(0.5,Ax.S_A.CLim(1),'ceil'):0.5:Ax.S_A.CLim(2);
+    RoundToStep(0.5,Ax.S_A.CLim(1),'ceil'):0.5:Ax.S_A.CLim(2);
 
 % T contours
 if any(strcmpi(ContourType,{'notext','all'}))
@@ -428,11 +428,11 @@ if DoColumns~=0
     for ColN=1:length(Col_d)
         % get x,y of 'distance along section' of columns
         % round to nearest model node
-        Col_x(ColN) = SNIP.RoundToStep(...
+        Col_x(ColN) = RoundToStep(...
             Iter.Layers.DefGrid.xstep,...
             interp1(Sect_d,SectX,Col_d(ColN)*1e3,'linear'),...
             'round');
-        Col_y(ColN) = SNIP.RoundToStep(...
+        Col_y(ColN) = RoundToStep(...
             Iter.Layers.DefGrid.ystep,...
             interp1(Sect_d,SectY,Col_d(ColN)*1e3,'linear'),...
             'round');
@@ -539,5 +539,48 @@ if nargout==5 % output handles to graphic objects
     varargout{4} = ColorbarsH;
     varargout{5} = PatchH;
 end
+
+end
+
+function out = RoundToStep(step,in,direction)
+%RoundToStep round(/floor/ceil/fix) input vector to nearest arbitrary 'step' unit
+% digit-counting code comes from this answer by user Jaymin on matlabcentral:
+% https://mathworks.com/matlabcentral/answers/10795-counting-the-number-of-digits#answer_68482
+% 
+% Syntax: out = RoundToStep(step,in,[direction])
+%
+% Inputs:
+%    step        : scalar, unit value
+%    in          : vector of values to be rounded
+%    [direction] : char vector, optional, direction of rounding
+%                  'round', 'floor', 'ceil', 'fix'
+%                  'round' is default behaviour
+%                  case insensitive
+%
+% Outputs:
+%    out         : rounded 'in' vector
+%
+
+% check and manage input
+narginchk(2,3)
+if nargin==2
+    direction='round';
+end
+assert(isscalar(step),'Argument ''step'' must be a scalar.')
+assert(isvector(in),'Argument ''in'' must be a vector.')
+% check if 'direction' is an allowed round-like function
+allowed_directions = {'round','floor','ceil','fix'};
+assert(any(strcmpi(allowed_directions,direction)),...
+    ['''',direction,''' is not an allowed rounding function.'])
+
+% count the number of digits
+stepDIG = numel(num2str(step))-numel(strfind(num2str(step),'-'))-numel(strfind(num2str(step),'.'));
+
+% number of zsteps in next power of 10
+stepdiv = (10^(stepDIG))/step; 
+
+% round/floor/ceil/fix to step
+roundfunc = str2func(lower(direction)); % create handle to selected rounding function
+out = ((roundfunc((in/(10^(stepDIG)))*stepdiv))/stepdiv)*(10^(stepDIG));
 
 end
