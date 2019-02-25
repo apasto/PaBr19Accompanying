@@ -2,8 +2,6 @@
 
 Accompanying data to the submitted manuscript "A geothermal application for GOCE satellite gravity data: modelling the crustal heat production and lithospheric temperature field in Central Europe".
 
-This data has been prepared as a git repository.
-
 Alberto Pastorutti and Carla Braitenberg, 2019.
 
 ## `grav` directory
