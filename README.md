@@ -64,7 +64,7 @@ Input and output of the thermal solver and iterative RHP fitting procedure. Data
 * `TIN_layers.mat`, input data used to build the thermal solver 3D volume. A struct containing:
   * `AIR`, `SEDS`, `UCRUST`, `LCRUST`, `LID`, `AST` - a field for each layer (AIR and AST define the top and bottom solver boundaries)
   * `DefGrid` - grid parameters (coordinates, steps) for the aforementioned layers. This grid, compared to the one provided in `Tgrid`, includes a two-cell wide edge padding, on each side.
-        
+
 ## `src` directory
 
 We provide two Matlab/Octave functions to ease the exploration of the thermal volume:
@@ -76,6 +76,7 @@ The `TOUT_sectionCall` function is a tool to interactively plot sections (vertic
 It acts as a wrapper for `TOUT_section`, which can be called directly.
 
 `TOUT_sectionCall` must be called without arguments.
+In depth usage documentation is provided in each .m file.
 
 First figure: map view. The figure waits for two clicks, defining the section path.
 
@@ -88,6 +89,11 @@ Second figure: section. Same format as section provided in the manuscript. The f
 Third figure: columns.
 
 ![Columns view in figure 3](./images/sectionCall_columns.png)
+
+### Dependencies
+Due to a call to [`minvtran`](https://mathworks.com/help/map/ref/minvtran.html), the MATLAB Mapping Toolbox is required.
+`minvtran` has not been implemented yet in OCTAVE (see [here](https://wiki.octave.org/Mapping_package#Missing_functions)).
+To overcome this limitation, `TOUT_section_NoTopo.m` is provided. It is a version of `TOUT_section.m` stripped of the topography profile extraction; therefore, no calls to `minvtran` are performed.
 
 ## `topo` directory
 
