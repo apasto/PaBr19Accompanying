@@ -1,14 +1,11 @@
 # A geothermal application for GOCE satellite gravity data: modelling the crustal heat production and lithospheric temperature field in Central Europe
 by Alberto Pastorutti and Carla Braitenberg (2019)
 
-This repository contains the accompanying data to the paper *A geothermal application for GOCE satellite gravity data: modelling the crustal heat production and lithospheric temperature field in Central Europe* , which has been accepted for pubblication in *Geophysical Journal International* following peer review.
-
-This repository also includes a pre-copyedited, author-produced PDF of the article.
-The version of record
-
+This repository contains the accompanying data to the paper
 >Pastorutti, A., & Braitenberg, C., 2019. A geothermal application for GOCE satellite gravity data: modelling the crustal heat production and lithospheric temperature field in Central Europe, Geophysical Journal International, doi:10.1093/gji/ggz344
+which has been accepted for pubblication in *Geophysical Journal International* following peer review.
 
-will be available online at: [doi.org/10.1093/gji/ggz344](https://doi.org/10.1093/gji/ggz344).
+The version of record will be available online at: [doi.org/10.1093/gji/ggz344](https://doi.org/10.1093/gji/ggz344).
 
 ## `grav` directory
 
