@@ -1,12 +1,18 @@
-# PaBr19 Accompanying Data
+# A geothermal application for GOCE satellite gravity data: modelling the crustal heat production and lithospheric temperature field in Central Europe
+by Alberto Pastorutti and Carla Braitenberg (2019)
 
-Accompanying data to the submitted manuscript "A geothermal application for GOCE satellite gravity data: modelling the crustal heat production and lithospheric temperature field in Central Europe".
+This repository contains the accompanying data to the paper *A geothermal application for GOCE satellite gravity data: modelling the crustal heat production and lithospheric temperature field in Central Europe* , which has been accepted for pubblication in *Geophysical Journal International* following peer review.
 
-Alberto Pastorutti and Carla Braitenberg, 2019.
+This repository also includes a pre-copyedited, author-produced PDF of the article.
+The version of record
+
+>Pastorutti, A., & Braitenberg, C., 2019. A geothermal application for GOCE satellite gravity data: modelling the crustal heat production and lithospheric temperature field in Central Europe, Geophysical Journal International, doi:10.1093/gji/ggz344
+
+will be available online at: [doi.org/10.1093/gji/ggz344](https://doi.org/10.1093/gji/ggz344).
 
 ## `grav` directory
 
-We provide the grids of gravity data and reductions as plain ASCII files, in (x, y, z) format, comma delimited. The grids cover the extents of area "B", Fig. 2.
+We are providing the grids of gravity data and reductions as plain ASCII files, in (x, y, z) format, comma delimited. The grids cover the extents of area "B", Fig. 2.
 All the data is provided in mGal (10<sup>-5</sup> m s<sup>-2</sup>).
 
 * `GGM.xyz` gravity disturbance from `GO_CONS_GCF_2_TIM_r5` GGM, up to d/o 280.
