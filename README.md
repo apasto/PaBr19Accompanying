@@ -1,15 +1,15 @@
 # Accompanying data to: "A geothermal application for GOCE satellite gravity data: modelling the crustal heat production and lithospheric temperature field in Central Europe"
-by Alberto Pastorutti and Carla Braitenberg (2019)
+by [Alberto Pastorutti](https://orcid.org/0000-0002-0279-5762) and [Carla Braitenberg](https://orcid.org/0000-0001-7277-816X) (2019)
 
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.3358902.svg)](https://doi.org/10.5281/zenodo.3358902)
 
-This repository contains the accompanying data to the paper
+This repository contains accompanying data sets to the paper
 >Pastorutti, A., & Braitenberg, C., 2019. A geothermal application for GOCE satellite gravity data: modelling the crustal heat production and lithospheric temperature field in Central Europe, Geophysical Journal International, doi:10.1093/gji/ggz344
 which has been accepted for pubblication in *Geophysical Journal International* following peer review.
 
-The version of record will be available online at: [doi.org/10.1093/gji/ggz344](https://doi.org/10.1093/gji/ggz344).
+**The version of record is available online at: [doi.org/10.1093/gji/ggz344](https://doi.org/10.1093/gji/ggz344).**
 
-This accompanying data repository is available at: [doi.org/10.5281/zenodo.3358902](https://doi.org/10.5281/zenodo.3358902)
+This accompanying data repository has the following DOI: [doi.org/10.5281/zenodo.3358902](https://doi.org/10.5281/zenodo.3358902)
 
 ## `grav` directory
 
