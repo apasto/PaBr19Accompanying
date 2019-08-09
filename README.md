@@ -5,7 +5,7 @@ by [Alberto Pastorutti](https://orcid.org/0000-0002-0279-5762) and [Carla Braite
 
 This repository contains accompanying data sets to the paper
 >Pastorutti, A., & Braitenberg, C., 2019. A geothermal application for GOCE satellite gravity data: modelling the crustal heat production and lithospheric temperature field in Central Europe, Geophysical Journal International, doi:10.1093/gji/ggz344
-which has been accepted for pubblication in *Geophysical Journal International* following peer review.
+which has been accepted for publication in *Geophysical Journal International* following peer review.
 
 **The version of record is available online at: [doi.org/10.1093/gji/ggz344](https://doi.org/10.1093/gji/ggz344).**
 
