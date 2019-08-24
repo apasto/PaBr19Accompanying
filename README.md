@@ -11,6 +11,8 @@ which has been accepted for publication in *Geophysical Journal International* f
 
 This accompanying data repository has the following DOI: [doi.org/10.5281/zenodo.3358902](https://doi.org/10.5281/zenodo.3358902)
 
+(note that the paper itself is accompanyed by a supplementary material / supporting information pdf, not to be mistaken with this data set)
+
 ## `grav` directory
 
 We are providing the grids of gravity data and reductions as plain ASCII files, in (x, y, z) format, comma delimited. The grids cover the extents of area "B", Fig. 2.
